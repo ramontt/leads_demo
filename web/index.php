@@ -40,7 +40,7 @@ $app->get('/webhook', function() use($app) {
     return $challenge;
   }
 
-  return "FAIL :'(";
+  return "FAILURE :'(";
 });
 
 $app->post('/webhook', function (?Request $request) {
