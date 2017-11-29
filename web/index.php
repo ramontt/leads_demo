@@ -42,7 +42,7 @@ $app->get('/webhook', function() use($app) {
 
 $app->post('/webhook', function (?Request $request) {
     $data = json_decode(file_get_contents('php://input'), true);
-    $app['monolog']->addDebug('RRR POST Message: ', $data);
+    error_log($data);
 
     return new Response('', 200);
 });
