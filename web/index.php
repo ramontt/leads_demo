@@ -2,6 +2,9 @@
 
 require('../vendor/autoload.php');
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 $app = new Silex\Application();
 $app['debug'] = true;
 
@@ -42,7 +45,7 @@ $app->get('/webhook', function() use($app) {
 
 $app->post('/webhook', function (?Request $request) {
     $data = json_decode(file_get_contents('php://input'), true);
-    error_log($data);
+    print_r($data);
 
     return new Response('', 200);
 });
