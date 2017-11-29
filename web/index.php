@@ -28,8 +28,16 @@ $app->get('/cowsay', function() use($app) {
 });
 
 $app->get('/webhook', function() use($app) {
-  $app['monolog']->addDebug('cowsay');
-  return "<pre>".\Cowsayphp\Cow::say("Sup!")."</pre>";
+  $app['monolog']->addDebug('webhook!');
+
+  $challenge = $_REQUEST['hub_challenge'];
+  $verify_token = $_REQUEST['hub_verify_token'];
+
+  if ($verify_token === 'castlevania') {
+    return $challenge;
+  }
+
+  return "FAIL :'(";
 });
 
 $app->post('/webhook', function (Request $request) {
