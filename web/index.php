@@ -27,9 +27,14 @@ $app->get('/cowsay', function() use($app) {
   return "<pre>".\Cowsayphp\Cow::say("Cool beans")."</pre>";
 });
 
+$app->get('/webhook', function() use($app) {
+  $app['monolog']->addDebug('cowsay');
+  return "<pre>".\Cowsayphp\Cow::say("Sup!")."</pre>";
+});
+
 $app->post('/webhook', function (Request $request) {
     $message = $request->get('message');
-    $app['monolog']->addDebug('RRR Message: ', $message);
+    $app['monolog']->addDebug('RRR POST Message: ', $message);
 
     return new Response('Thank you for your feedback!', 200);
 });
