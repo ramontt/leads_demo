@@ -45,7 +45,7 @@ $app->get('/webhook', function() use($app) {
 
 $app->post('/webhook', function (?Request $request) {
     $data = json_decode(file_get_contents('php://input'), true);
-    print_r($data);
+    error_log(print_r($data, true));
 
     return new Response('', 200);
 });
