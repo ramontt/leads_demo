@@ -41,10 +41,10 @@ $app->get('/webhook', function() use($app) {
 });
 
 $app->post('/webhook', function (?Request $request) {
-    $message = $request->get('message');
-    $app['monolog']->addDebug('RRR POST Message: ', $message);
+    $data = json_decode(file_get_contents('php://input'), true);
+    $app['monolog']->addDebug('RRR POST Message: ', $data);
 
-    return new Response('Thank you for your feedback!', 200);
+    return new Response('', 200);
 });
 
 $app->run();
