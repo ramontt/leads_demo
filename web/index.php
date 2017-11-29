@@ -40,7 +40,7 @@ $app->get('/webhook', function() use($app) {
   return "FAIL :'(";
 });
 
-$app->post('/webhook', function (Request $request) {
+$app->post('/webhook', function (?Request $request) {
     $message = $request->get('message');
     $app['monolog']->addDebug('RRR POST Message: ', $message);
 
